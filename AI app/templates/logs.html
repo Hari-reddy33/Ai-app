@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">Test History Logs</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Code Snippet</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in logs %}
+                                <tr>
+                                    <td>{{ log['timestamp'] }}</td>
+                                    <td><code>{{ log['input_code'][:50] }}...</code></td>
+                                    <td><span class="badge bg-success">Processed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#logModal{{ log['id'] }}">
+                                            View Details
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="logModal{{ log['id'] }}" tabindex="-1">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Log Details - {{ log['timestamp'] }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>Input Code:</h6>
+                                                <pre class="line-numbers"><code class="language-python">{{ log['input_code'] }}</code></pre>
+                                                <hr>
+                                                <h6>Explanation:</h6>
+                                                <p>{{ log['explanation'] }}</p>
+                                                <hr>
+                                                <h6>Suggested Fix:</h6>
+                                                <pre class="line-numbers"><code class="language-python">{{ log['fix'] }}</code></pre>
+                                                <hr>
+                                                <h6>Optimization:</h6>
+                                                <pre class="line-numbers"><code class="language-python">{{ log['optimization'] }}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if not logs %}
+                    <p class="text-center text-muted">No logs found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

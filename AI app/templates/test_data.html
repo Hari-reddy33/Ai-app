@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">AI Code Analysis</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Input Source Code</div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <textarea name="code" class="form-control" rows="15" required placeholder="Paste your code here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-brain me-2"></i>Analyze & Optimize
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">AI Analysis Results</div>
+            <div class="card-body" style="height: 500px; overflow-y: auto;">
+                {% if result %}
+                    <div class="mb-4">
+                        <h5 class="text-danger"><i class="fas fa-exclamation-triangle me-2"></i>Error Explanation</h5>
+                        <p>{{ result['explanation'] }}</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-success"><i class="fas fa-check-circle me-2"></i>Bug Fix</h5>
+                        <pre class="line-numbers"><code class="language-python">{{ result['fix'] }}</code></pre>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-info"><i class="fas fa-rocket me-2"></i>Optimization</h5>
+                        <pre class="line-numbers"><code class="language-python">{{ result['optimization'] }}</code></pre>
+                    </div>
+                    <div>
+                        <h5 class="text-warning"><i class="fas fa-chart-bar me-2"></i>Metrics</h5>
+                        <ul>
+                            <li>Complexity: {{ result['metrics']['complexity'] }}/10</li>
+                            <li>Efficiency: {{ result['metrics']['efficiency'] }}/10</li>
+                            <li>Readability: {{ result['metrics']['readability'] }}/10</li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="text-center mt-5 text-muted">
+                        <i class="fas fa-robot fa-4x mb-3"></i>
+                        <p>Analysis results will appear here after you submit your code.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

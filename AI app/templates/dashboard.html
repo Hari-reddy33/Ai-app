@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">System Overview</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white dashboard-stat">
+            <div class="icon text-white"><i class="fas fa-file-code"></i></div>
+            <h4>Total Tests</h4>
+            <div class="h2">{{ logs_count }}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white dashboard-stat">
+            <div class="icon text-white"><i class="fas fa-user-circle"></i></div>
+            <h4>Active User</h4>
+            <div class="h2">{{ session['username'] }}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-info text-white dashboard-stat">
+            <div class="icon text-white"><i class="fas fa-clock"></i></div>
+            <h4>Last Activity</h4>
+            <div class="h5">{% if last_log %}{{ last_log['timestamp'] }}{% else %}No activity yet{% endif %}</div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Recent Test Summary</div>
+            <div class="card-body">
+                {% if last_log %}
+                    <h5>Input Code:</h5>
+                    <pre><code>{{ last_log['input_code'][:200] }}...</code></pre>
+                    <a href="{{ url_for('logs') }}" class="btn btn-primary btn-sm mt-3">View All Logs</a>
+                {% else %}
+                    <p class="text-muted">You haven't performed any tests yet.</p>
+                    <a href="{{ url_for('test_data') }}" class="btn btn-primary">Start First Test</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Quick Actions</div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('test_data') }}" class="btn btn-outline-primary"><i class="fas fa-plus me-2"></i>New Test</a>
+                    <a href="{{ url_for('reports') }}" class="btn btn-outline-info"><i class="fas fa-chart-line me-2"></i>Performance Reports</a>
+                    <a href="{{ url_for('profile') }}" class="btn btn-outline-dark"><i class="fas fa-user-cog me-2"></i>Manage Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

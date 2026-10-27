@@ -1,0 +1,85 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #858796;
+    --success-color: #1cc88a;
+    --info-color: #36b9cc;
+    --warning-color: #f6c23e;
+    --danger-color: #e74a3b;
+    --light-color: #f8f9fc;
+    --dark-color: #5a5c69;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.container-fluid {
+    padding: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.hero-section {
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.auth-card {
+    max-width: 500px;
+    margin: 4rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.dashboard-stat {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.dashboard-stat .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+pre {
+    background-color: #f8f9fc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e3e6f0;
+    overflow-x: auto;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}

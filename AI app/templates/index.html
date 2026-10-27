@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="display-3 fw-bold mb-4">AI Application to Explain Code Errors, Fix Bugs, and Generate Optimized Code</h1>
+    <p class="lead mb-5">Leverage the power of Groq AI to analyze, fix, and optimize your source code instantly.</p>
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+        {% if not session.get('user_id') %}
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg px-4">Login</a>
+        {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg px-4">Go to Dashboard</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <i class="fas fa-search-code fa-3x mb-3 text-primary"></i>
+            <h3>Error Detection</h3>
+            <p>Automatically identify syntax and logical errors in your code with detailed explanations.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <i class="fas fa-magic fa-3x mb-3 text-success"></i>
+            <h3>Code Fixing</h3>
+            <p>Get AI-generated fixes for bugs and vulnerabilities in seconds.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <i class="fas fa-rocket fa-3x mb-3 text-info"></i>
+            <h3>Optimization</h3>
+            <p>Generate optimized versions of your code for better performance and readability.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
